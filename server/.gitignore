@@ -1,0 +1,7 @@
+.env
+config/google-service-account.json
+uploads/
+public/masked/
+node_modules/
+temp images/
+secrets/

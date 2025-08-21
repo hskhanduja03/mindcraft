@@ -1,0 +1,44 @@
+/* LoadingSpinner.css - Updated with colors */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+  }
+  
+  .spinner-container {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    padding: 2.5rem;
+    border-radius: 16px;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    min-width: 300px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .spinner {
+    width: 60px;
+    height: 60px;
+    border: 6px solid rgba(67, 97, 238, 0.2);
+    border-radius: 50%;
+    border-top-color: #4361ee;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 1.5rem;
+  }
+  
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+  }
+  
+  .spinner-container p {
+    margin: 0;
+    color: #3a0ca3;
+    font-weight: 500;
+    font-size: 1.1rem;
+  }
