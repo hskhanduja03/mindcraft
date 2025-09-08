@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:4200/api'; // fixed port
+const API_BASE_URL = 'http://localhost:4200/api';
 
 export const processImage = async (imageFile) => {
   const formData = new FormData();

@@ -1,6 +1,7 @@
 const client = require("../config/google-vision");
 const maskImage = require("../utils/maskImage");
 const { detectPII } = require("../middleware/piiDetection");
+const refinePIIWithGemini = require("../utils/geminiPII");
 
 exports.processImage = async (req, res) => {
   try {
@@ -20,13 +21,15 @@ exports.processImage = async (req, res) => {
 
     // Extract all text
     const fullText = detections[0].description;
-
-    // Detect PII in the text
     const piiData = detectPII(fullText);
-    console.log("PII Detected:", piiData);
 
-    // Mask the image based on detected PII and bounding boxes
-    const maskedImagePath = await maskImage(req.file.path, detections, piiData);
+    // NEW STEP: use Gemini to refine PII → get exact substrings
+    const refinedPII = await refinePIIWithGemini(fullText, detections, piiData);
+
+    // Pass refined list to maskImage
+    const maskedImagePath = await maskImage(req.file.path, detections, {
+      mask: refinedPII.mask,
+    });
 
     // Send response
     res.json({
